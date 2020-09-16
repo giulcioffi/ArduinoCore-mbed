@@ -55,8 +55,8 @@ jobs:
       - name: Checkout ArduinoCore-API
         uses: actions/checkout@v2
         with:
-          repository: arduino/ArduinoCore-API
-          ref: namespace_arduino
+          repository: giulcioffi/ArduinoCore-API
+          ref: namespaced_api_Hardware
           path: ArduinoCore-API
 
       - name: Remove old symlink to api
@@ -77,7 +77,7 @@ jobs:
               name: "arduino-beta:mbed"
           sketch-paths: "${{ env.UNIVERSAL_SKETCH_PATHS }} ${{ matrix.additional-sketch-paths }}"
           verbose: 'false'
-          enable-size-deltas-report: true
+          enable-deltas-report: true
 
       - name: Save memory usage change report as artifact
         if: github.event_name == 'pull_request'
