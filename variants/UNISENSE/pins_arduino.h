@@ -87,6 +87,8 @@ extern "C" unsigned int PINCOUNT_fn();
 #define PIN_SPI_SCK   (13u)
 #define PIN_SPI_SS    (10u)
 
+static const uint8_t A0  = 0;
+
 static const uint8_t SS   = PIN_SPI_SS;   // SPI Slave SS not used. Set here only for reference.
 static const uint8_t MOSI = PIN_SPI_MOSI;
 static const uint8_t MISO = PIN_SPI_MISO;
