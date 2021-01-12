@@ -7,11 +7,13 @@
   ],
   "target_overrides": {
     "*": {
-      "target.printf_lib": "std",
+      "target.printf_lib": "small",
       "platform.stdio-buffered-serial": true,
       "platform.stdio-baud-rate": 115200,
       "platform.default-serial-baud-rate": 115200,
       "platform.callback-nontrivial": true,
+      "target.mbed_app_start": "0x10000",
+      "target.components_add" : ["SPIF"],
       "cordio.max-connections": 5
     }
   }
