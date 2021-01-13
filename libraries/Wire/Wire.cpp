@@ -22,7 +22,7 @@
 
 #include "Wire.h"
 
-arduino::MbedI2C::MbedI2C(int sda, int scl) : _sda(sda), _scl(scl), usedTxBuffer(0) {}
+arduino::MbedI2C::MbedI2C(int sda, int scl) : _sda(sda), _scl(scl), usedTxBuffer(0), slave_th(osPriorityNormal, 2048) {}
 
 void arduino::MbedI2C::begin() {
 	master = new mbed::I2C((PinName)_sda, (PinName)_scl);
