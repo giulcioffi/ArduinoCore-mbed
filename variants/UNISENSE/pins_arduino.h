@@ -135,8 +135,8 @@ static const uint8_t SCK  = PIN_SPI_SCK;
 
 // Mbed specific defines
 #define SERIAL_HOWMANY		1
-#define SERIAL1_TX			(digitalPinToPinName(PIN_SERIAL_TX))
-#define SERIAL1_RX			(digitalPinToPinName(PIN_SERIAL_RX))
+#define SERIAL1_TX			(TX_PIN_NUMBER)
+#define SERIAL1_RX			(RX_PIN_NUMBER)
 
 //#define SERIAL_CDC			1
 #define HAS_UNIQUE_ISERIAL_DESCRIPTOR
@@ -148,10 +148,10 @@ static const uint8_t SCK  = PIN_SPI_SCK;
 
 #define WIRE_HOWMANY		2
 
-#define I2C_SDA				(digitalPinToPinName(PIN_WIRE_SDA))
-#define I2C_SCL				(digitalPinToPinName(PIN_WIRE_SCL))
-#define I2C_SDA1			(digitalPinToPinName(PIN_WIRE_SDA1))
-#define I2C_SCL1			(digitalPinToPinName(PIN_WIRE_SCL1))
+#define I2C_SDA				(I2C_SDA0)
+#define I2C_SCL				(I2C_SCL0)
+#define I2C_SDA1			(I2C_SDA1)
+#define I2C_SCL1			(I2C_SCL1)
 
 #define SPI_HOWMANY			1
 
