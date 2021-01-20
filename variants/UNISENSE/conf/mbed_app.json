@@ -12,11 +12,17 @@
       "platform.stdio-baud-rate": 115200,
       "platform.default-serial-baud-rate": 115200,
       "platform.callback-nontrivial": true,
-      "rtos.main-thread-stack-size": 2048,
+      "rtos.main-thread-stack-size": 1024,
       "rtos.thread-stack-size": 1024,
+      "rtos.idle-thread-stack-size": 512,
       "target.mbed_app_start": "0x10000",
       "target.components_add" : ["SPIF"],
-      "cordio.max-connections": 5
+      "cordio.max-connections": 2,
+      "ble.ble-role-central": false,
+      "ble.ble-role-observer": false,
+      "ble.ble-security-database-max-entries": 3,
+      "ble.ble-gap-max-advertising-sets": 5,
+      "ble.ble-gap-host-privacy-resolved-cache-size": 8
     }
   }
 }
