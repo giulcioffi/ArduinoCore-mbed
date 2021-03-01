@@ -225,3 +225,47 @@ unisense.bootloader.config=-f target/nrf52.cfg
 unisense.bootloader.programmer=-f interface/cmsis-dap.cfg
 unisense.bootloader.file=nano33ble/bootloader.hex
 
+##########################################################################
+
+bormio.name=Bormio
+bormio.build.core=arduino
+bormio.build.crossprefix=arm-none-eabi-
+bormio.build.compiler_path={runtime.tools.arm-none-eabi-gcc.path}/bin/
+
+bormio.build.variant=BORMIO
+bormio.build.mcu=cortex-m7
+bormio.build.fpu=-mfpu=fpv5-d16
+bormio.build.float-abi=-mfloat-abi=softfp
+bormio.build.extra_flags=
+bormio.build.architecture=cortex-m7
+bormio.build.board=BORMIO
+bormio.build.ldscript=linker_script.ld
+bormio.compiler.mbed.arch.define=
+bormio.compiler.mbed.defines={build.variant.path}/defines.txt
+bormio.compiler.mbed.ldflags={build.variant.path}/ldflags.txt
+bormio.compiler.mbed.cflags={build.variant.path}/cflags.txt
+bormio.compiler.mbed.cxxflags={build.variant.path}/cxxflags.txt
+bormio.compiler.mbed.includes={build.variant.path}/includes.txt
+bormio.compiler.mbed.extra_ldflags=-lstdc++ -lsupc++ -lm -lc -lgcc -lnosys
+bormio.compiler.mbed="{build.variant.path}/libs/libmbed.a"
+bormio.vid.0=0x2341
+bormio.pid.0=0x005e
+
+bormio.upload.tool=dfu-util
+bormio.upload.protocol=
+bormio.upload.vid=0x2341
+bormio.upload.pid=0x005e
+bormio.upload.address=0x08000000
+bormio.upload.interface=0
+bormio.upload.use_1200bps_touch=true
+bormio.upload.wait_for_upload_port=true
+bormio.upload.native_usb=true
+bormio.upload.maximum_size=786432
+bormio.upload.maximum_data_size=523624
+
+bormio.debug.tool=gdb
+bormio.bootloader.tool=openocd
+bormio.bootloader.config=-f target/stm32h7x_dual_bank.cfg
+bormio.bootloader.programmer=-f interface/stlink.cfg
+bormio.bootloader.extra_action.preflash=stm32h7x option_write 0 0x01c 0xb86aaf0
+bormio.bootloader.file=PORTENTA_H7/portentah7_bootloader_mbed_hs_v2.elf
