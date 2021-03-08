@@ -268,4 +268,4 @@ bormio.bootloader.tool=openocd
 bormio.bootloader.config=-f target/stm32h7x_dual_bank.cfg
 bormio.bootloader.programmer=-f interface/stlink.cfg
 bormio.bootloader.extra_action.preflash=stm32h7x option_write 0 0x01c 0xb86aaf0
-bormio.bootloader.file=PORTENTA_H7/portentah7_bootloader_mbed_hs_v2.elf
+bormio.bootloader.file=BORMIO/bormio_bootloader_application.elf
