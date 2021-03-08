@@ -119,6 +119,8 @@
 #define MBED_CONF_FAT_CHAN_FLUSH_ON_NEW_CLUSTER                               0                                                                                                // set by library:fat_chan
 #define MBED_CONF_FAT_CHAN_FLUSH_ON_NEW_SECTOR                                1                                                                                                // set by library:fat_chan
 #define MBED_CONF_FILESYSTEM_PRESENT                                          1                                                                                                // set by library:filesystem
+#define MBED_CONF_FLASHIAP_BLOCK_DEVICE_BASE_ADDRESS                          0xFFFFFFFF                                                                                       // set by library:flashiap-block-device
+#define MBED_CONF_FLASHIAP_BLOCK_DEVICE_SIZE                                  0                                                                                                // set by library:flashiap-block-device
 #define MBED_CONF_GEMALTO_CINTERION_BAUDRATE                                  115200                                                                                           // set by library:GEMALTO_CINTERION
 #define MBED_CONF_GEMALTO_CINTERION_PROVIDE_DEFAULT                           0                                                                                                // set by library:GEMALTO_CINTERION
 #define MBED_CONF_GENERIC_AT3GPP_BAUDRATE                                     115200                                                                                           // set by library:GENERIC_AT3GPP
@@ -161,6 +163,8 @@
 #define MBED_CONF_LWIP_MEMP_NUM_TCPIP_MSG_INPKT                               8                                                                                                // set by library:lwip
 #define MBED_CONF_LWIP_MEMP_NUM_TCP_SEG                                       16                                                                                               // set by library:lwip
 #define MBED_CONF_LWIP_MEM_SIZE                                               1600                                                                                             // set by library:lwip
+#define MBED_CONF_LWIP_ND6_QUEUEING                                           0                                                                                                // set by library:lwip
+#define MBED_CONF_LWIP_ND6_RDNSS_MAX_DNS_SERVERS                              0                                                                                                // set by library:lwip
 #define MBED_CONF_LWIP_NUM_NETBUF                                             8                                                                                                // set by library:lwip
 #define MBED_CONF_LWIP_NUM_PBUF                                               8                                                                                                // set by library:lwip
 #define MBED_CONF_LWIP_PBUF_POOL_SIZE                                         5                                                                                                // set by library:lwip

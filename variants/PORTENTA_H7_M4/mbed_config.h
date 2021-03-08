@@ -38,6 +38,7 @@
 #define BLE_GAP_HOST_PRIVACY_RESOLVED_CACHE_SIZE                                16                                                                                               // set by library:ble
 #define BLE_GAP_MAX_ADVERTISING_REPORTS_PENDING_ADDRESS_RESOLUTION              16                                                                                               // set by library:ble
 #define BLE_GAP_MAX_ADVERTISING_SETS                                            15                                                                                               // set by library:ble
+#define BLE_PASSKEY_DISPLAY_REVERSED_DIGITS_DEPRECATION                         1                                                                                                // set by library:ble
 #define BLE_ROLE_BROADCASTER                                                    1                                                                                                // set by library:ble
 #define BLE_ROLE_CENTRAL                                                        1                                                                                                // set by library:ble
 #define BLE_ROLE_OBSERVER                                                       1                                                                                                // set by library:ble
@@ -205,6 +206,8 @@
 #define MBED_CONF_LWIP_MEMP_NUM_TCPIP_MSG_INPKT                                 8                                                                                                // set by library:lwip
 #define MBED_CONF_LWIP_MEMP_NUM_TCP_SEG                                         16                                                                                               // set by library:lwip
 #define MBED_CONF_LWIP_MEM_SIZE                                                 16000                                                                                            // set by library:lwip[PORTENTA_H7]
+#define MBED_CONF_LWIP_ND6_QUEUEING                                             0                                                                                                // set by library:lwip
+#define MBED_CONF_LWIP_ND6_RDNSS_MAX_DNS_SERVERS                                0                                                                                                // set by library:lwip
 #define MBED_CONF_LWIP_NUM_NETBUF                                               8                                                                                                // set by library:lwip
 #define MBED_CONF_LWIP_NUM_PBUF                                                 8                                                                                                // set by library:lwip
 #define MBED_CONF_LWIP_PBUF_POOL_SIZE                                           5                                                                                                // set by library:lwip
@@ -278,6 +281,7 @@
 #define MBED_CONF_NANOSTACK_HAL_EVENT_LOOP_USE_MBED_EVENTS                      0                                                                                                // set by library:nanostack-hal
 #define MBED_CONF_NANOSTACK_HAL_KVSTORE_PATH                                    "/kv/"                                                                                           // set by library:nanostack-hal
 #define MBED_CONF_NANOSTACK_HAL_USE_KVSTORE                                     0                                                                                                // set by library:nanostack-hal
+#define MBED_CONF_NANOSTACK_LIBSERVICE_NSDYNMEM_TRACKER_ENABLED                 0                                                                                                // set by library:nanostack-libservice
 #define MBED_CONF_NANOSTACK_LIBSERVICE_PRESENT                                  1                                                                                                // set by library:nanostack-libservice
 #define MBED_CONF_NSAPI_DEFAULT_MESH_TYPE                                       THREAD                                                                                           // set by library:nsapi
 #define MBED_CONF_NSAPI_DEFAULT_STACK                                           LWIP                                                                                             // set by library:nsapi
@@ -455,6 +459,7 @@
 // Macros
 #define MBEDTLS_CIPHER_MODE_CTR                                                                                                                                                  // defined by library:SecureStore
 #define NSAPI_PPP_AVAILABLE                                                     (MBED_CONF_PPP_ENABLED || MBED_CONF_LWIP_PPP_ENABLED)                                            // defined by library:ppp
+#define NSDYNMEM_TRACKER_ENABLED                                                MBED_CONF_NANOSTACK_LIBSERVICE_NSDYNMEM_TRACKER_ENABLED                                          // defined by library:nanostack-libservice
 #define NS_USE_EXTERNAL_MBED_TLS                                                                                                                                                 // defined by library:nanostack
 #define UNITY_INCLUDE_CONFIG_H                                                                                                                                                   // defined by library:utest
 #define WSF_MS_PER_TICK                                                         1                                                                                                // defined by library:cordio
