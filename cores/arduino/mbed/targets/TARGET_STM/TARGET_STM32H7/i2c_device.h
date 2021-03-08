@@ -17,13 +17,13 @@
 #ifndef MBED_I2C_DEVICE_H
 #define MBED_I2C_DEVICE_H
 
-#include "cmsis.h"
+#include "PeripheralNames.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
+#if DEVICE_I2C
 
 #define I2C_IP_VERSION_V2
 
@@ -36,11 +36,13 @@ extern "C" {
 #define I2CAPI_I2C4_CLKSRC RCC_I2C4CLKSOURCE_D3PCLK1
 
 /*  Provide the suitable timing depending on requested frequency */
-extern uint32_t get_i2c_timing(int hz);
+extern uint32_t get_i2c_timing(I2CName i2c, int hz);
 
 
 #ifdef __cplusplus
 }
 #endif
+
+#endif // DEVICE_I2C
 
 #endif

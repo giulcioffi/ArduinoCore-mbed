@@ -90,13 +90,17 @@ struct serial_s {
     PinName pin_rts;
     PinName pin_cts;
     uint32_t baud;
-    void *handler;
-    uint32_t handler_arg;
 };
 
 struct i2c_s {
     i2c_inst_t * dev;
     unsigned int baudrate;
+
+#if DEVICE_I2CSLAVE
+    bool was_slave;
+    bool is_slave;
+    uint8_t slave_addr;
+#endif
 };
 
 struct spi_s {
