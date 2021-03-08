@@ -8,7 +8,7 @@ MEMORY
   ITCMRAM (xrw) : ORIGIN = 0x00000000, LENGTH = 64K
 }
 __OPENAMP_region_start__  = 0x38000400;
-__OPENAMP_region_end__ = 0x38000400 + LENGTH(RAM_D3);
+__OPENAMP_region_end__ = 0x38000400 + LENGTH(RAM_D3) - 1K;
 ENTRY(Reset_Handler)
 SECTIONS
 {
@@ -92,6 +92,10 @@ SECTIONS
          . = ABSOLUTE(0x38000000);
          *(.resource_table)
      } >RAM_D3  AT > FLASH
+     .pdm_section (NOLOAD) : {
+         . = ABSOLUTE(0x3800FC00);
+         *(.pdm_buffer)
+     } > RAM_D3
     .heap (COPY):
     {
         __end__ = .;
