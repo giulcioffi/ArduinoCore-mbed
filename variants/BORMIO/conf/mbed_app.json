@@ -10,7 +10,7 @@
       "platform.memory-tracing-enabled": true,
       "rtos.main-thread-stack-size": 32768,
       "cordio.max-connections": 5,
-      "target.mbed_app_start": "0x8000000",
+      "target.mbed_app_start": "0x8040000",
       "target.macros_add": [
         "METAL_INTERNAL",
         "VIRTIO_MASTER_ONLY",
