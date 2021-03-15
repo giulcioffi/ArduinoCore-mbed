@@ -45,21 +45,6 @@ typedef enum {
     ADC_VREF = 0xF1,
 
 #ifndef ARDUINO_ARCH_MBED
-    D0          = p1,
-    D1          = p0,
-    D2          = p25,
-    D3          = p15,
-    D4          = p16,
-    D5          = p17,
-    D6          = p18,
-    D7          = p19,
-    D8          = p20,
-    D9          = p21,
-    D10         = p5,
-    D11         = p7,
-    D12         = p4,
-    D13         = p6,
-
     A0          = 26,
     A1          = 27,
     A2          = 28,
@@ -69,10 +54,10 @@ typedef enum {
     USBTX = p0,
     USBRX = p1,
 
-    LED1 = p6,
-    LED2 = p6,
-    LED3 = p6,
-    LED4 = p6,
+    LED1 = p25,
+    LED2 = p25,
+    LED3 = p25,
+    LED4 = p25,
 
     // Not connected
     NC = (int)0xFFFFFFFF
