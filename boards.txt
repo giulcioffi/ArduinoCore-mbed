@@ -80,9 +80,10 @@ envie_m4.build.variant=PORTENTA_H7_M4
 envie_m4.build.mcu=cortex-m4
 envie_m4.build.fpu=fpv4-sp-d16
 envie_m4.build.float-abi=softfp
-envie_m4.menu.50_50.build.extra_flags=-DCM4_BINARY_START=0x08100000 -DCM4_BINARY_END=0x08200000
-envie_m4.menu.75_25.build.extra_flags=-DCM4_BINARY_START=0x08180000 -DCM4_BINARY_END=0x08200000
-envie_m4.menu.100_0.build.extra_flags=-DCM4_BINARY_START=0x60000000 -DCM4_BINARY_END=0x60040000 -DCM4_RAM_END=0x60080000
+envie_m4.build.extra_flags=
+envie_m4.menu.split.50_50.build.extra_flags=-DCM4_BINARY_START=0x08100000 -DCM4_BINARY_END=0x08200000
+envie_m4.menu.split.75_25.build.extra_flags=-DCM4_BINARY_START=0x08180000 -DCM4_BINARY_END=0x08200000
+envie_m4.menu.split.100_0.build.extra_flags=-DCM4_BINARY_START=0x60000000 -DCM4_BINARY_END=0x60040000 -DCM4_RAM_END=0x60080000
 envie_m4.build.architecture=cortex-m4
 envie_m4.build.board=PORTENTA_H7_M4
 envie_m4.build.ldscript=linker_script.ld
