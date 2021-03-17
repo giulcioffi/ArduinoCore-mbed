@@ -102,7 +102,7 @@ void _ontouch1200bps_() {
 
 void bootM4() {
 
-#if CM4_BINARY_START == 0x60000000
+#if 0
   // This address need to be in range 0x10000000-0x3FFF0000 to be usable by the M4 as a trampoline
   uint32_t  __attribute__((aligned(0x10000))) trampoline[2];
   static const uint32_t RAM_BASE_FOR_TRAMPOLINE = (uint32_t)&trampoline[0];
