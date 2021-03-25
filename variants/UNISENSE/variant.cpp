@@ -64,9 +64,9 @@ void analogAcquisitionTime(uint8_t time)
 
 AnalogPinDescription g_AAnalogPinDescription[] = {
     // A0 - A7
-  { P0_4,  NULL },    // A0
-  { P0_5,  NULL },    // A1
-  { P0_30, NULL },    // A2
+  { P0_2,  NULL },    // A0
+  { P0_30,  NULL },    // A1
+  { P0_5, NULL },    // A2
   { P0_29, NULL },    // A3
   { P0_31, NULL },    // A4/SDA
   { P0_2,  NULL },    // A5/SCL
