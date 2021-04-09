@@ -1,0 +1,5 @@
+export FLAVOUR="nicla"
+export VARIANTS=("NICLA")
+export FQBNS=("nicla")
+export LIBRARIES=("PDM SPI Wire MRI USBHID USBMSD ThreadDebug Scheduler")
+export BOOTLOADERS=("")
