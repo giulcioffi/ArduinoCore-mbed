@@ -277,8 +277,8 @@ nicla.build.variant=NICLA
 nicla.build.mcu=cortex-m4
 nicla.build.extra_flags=
 nicla.build.architecture=cortex-m4
-nicla.build.fpu=fpv4-sp-d16
-nicla.build.float-abi=softfp
+nicla.build.fpu=-mfpu=fpv4-sp-d16
+nicla.build.float-abi=-mfloat-abi=softfp
 nicla.build.board=NICLA
 nicla.build.ldscript=linker_script.ld
 nicla.compiler.mbed.arch.define=-DARDUINO_ARCH_NRF52832
