@@ -1,0 +1,25 @@
+From a30bb0ec309dbd5500c876be63dd74f1736b0668 Mon Sep 17 00:00:00 2001
+From: giulcioffi <g.cioffi@arduino.cc>
+Date: Thu, 1 Apr 2021 18:02:36 +0200
+Subject: [PATCH 7/8] Disable clock anomaly
+
+---
+ .../TARGET_SDK_15_0/modules/nrfx/drivers/src/nrfx_clock.c       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_SDK_15_0/modules/nrfx/drivers/src/nrfx_clock.c b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_SDK_15_0/modules/nrfx/drivers/src/nrfx_clock.c
+index 8e1d14e9a0..2b657e87f1 100644
+--- a/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_SDK_15_0/modules/nrfx/drivers/src/nrfx_clock.c
++++ b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_SDK_15_0/modules/nrfx/drivers/src/nrfx_clock.c
+@@ -231,7 +231,7 @@ void nrfx_clock_lfclk_start(void)
+     nrf_clock_int_enable(NRF_CLOCK_INT_LF_STARTED_MASK);
+ 
+ #if defined(NRF52832_XXAA) || defined(NRF52832_XXAB)
+-    nrfx_clock_anomaly_132();
++    //nrfx_clock_anomaly_132();
+ #endif
+ 
+     nrf_clock_task_trigger(NRF_CLOCK_TASK_LFCLKSTART);
+-- 
+2.25.1
+
