@@ -1,17 +1,17 @@
 From 1b910dca00897ac77ca0acc493adb40ce8396761 Mon Sep 17 00:00:00 2001
 From: giulcioffi <g.cioffi@arduino.cc>
 Date: Fri, 9 Apr 2021 14:51:17 +0200
-Subject: [PATCH 8/8] Rename Unisense to Nicla
+Subject: [PATCH 8/8] Rename Nicla to Nicla
 
 ---
  storage/blockdevice/COMPONENT_SD/mbed_lib.json                  | 2 +-
  storage/blockdevice/COMPONENT_SPIF/mbed_lib.json                | 2 +-
- .../{TARGET_UNISENSE => TARGET_NICLA}/PinNames.h                | 0
- .../{TARGET_UNISENSE => TARGET_NICLA}/device.h                  | 0
+ .../{TARGET_NICLA => TARGET_NICLA}/PinNames.h                | 0
+ .../{TARGET_NICLA => TARGET_NICLA}/device.h                  | 0
  targets/targets.json                                            | 2 +-
  5 files changed, 3 insertions(+), 3 deletions(-)
- rename targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/{TARGET_UNISENSE => TARGET_NICLA}/PinNames.h (100%)
- rename targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/{TARGET_UNISENSE => TARGET_NICLA}/device.h (100%)
+ rename targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/{TARGET_NICLA => TARGET_NICLA}/PinNames.h (100%)
+ rename targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/{TARGET_NICLA => TARGET_NICLA}/device.h (100%)
 
 diff --git a/storage/blockdevice/COMPONENT_SD/mbed_lib.json b/storage/blockdevice/COMPONENT_SD/mbed_lib.json
 index d310337037..2d3496ceb9 100644
@@ -21,7 +21,7 @@ index d310337037..2d3496ceb9 100644
              "SPI_CLK":  "PB_10",
              "SPI_CS":   "PE_2"
          },
--        "UNISENSE": {
+-        "NICLA": {
 +        "NICLA": {
            "SPI_MOSI": "P0_13",
            "SPI_MISO": "P0_14",
@@ -34,18 +34,18 @@ index e488ce91fc..d8ace44fde 100644
             "SPI_CLK":  "SPI3_SCK",
             "SPI_CS":   "SPI_CS1"
         },
--       "UNISENSE": {
+-       "NICLA": {
 +       "NICLA": {
             "SPI_MOSI": "SPI_PSELMOSI0",
             "SPI_MISO": "SPI_PSELMISO0",
             "SPI_CLK":  "SPI_PSELSCK0",
-diff --git a/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/PinNames.h b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/PinNames.h
+diff --git a/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/PinNames.h b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/PinNames.h
 similarity index 100%
-rename from targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/PinNames.h
+rename from targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/PinNames.h
 rename to targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/PinNames.h
-diff --git a/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/device.h b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/device.h
+diff --git a/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/device.h b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/device.h
 similarity index 100%
-rename from targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/device.h
+rename from targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/device.h
 rename to targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/device.h
 diff --git a/targets/targets.json b/targets/targets.json
 index ec3780ac8a..d373ab0b46 100644
@@ -55,7 +55,7 @@ index ec3780ac8a..d373ab0b46 100644
          ],
          "device_name": "nRF52832_xxAA"
      },
--    "UNISENSE": {
+-    "NICLA": {
 +    "NICLA": {
          "inherits": ["MCU_NRF52832"],
          "components_add": [

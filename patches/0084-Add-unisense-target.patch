@@ -1,17 +1,17 @@
 From 0359bf9815566f22a7fcce111477d8c3848a5d45 Mon Sep 17 00:00:00 2001
 From: Martino Facchin <m.facchin@arduino.cc>
 Date: Fri, 27 Nov 2020 10:34:42 +0100
-Subject: [PATCH 1/8] Add unisense target
+Subject: [PATCH 1/8] Add nicla target
 
 ---
  .../blockdevice/COMPONENT_SD/mbed_lib.json    |   8 +-
  .../blockdevice/COMPONENT_SPIF/mbed_lib.json  |   6 +
- .../TARGET_UNISENSE/PinNames.h                | 205 ++++++++++++++++++
- .../TARGET_UNISENSE/device.h                  |  39 ++++
+ .../TARGET_NICLA/PinNames.h                | 205 ++++++++++++++++++
+ .../TARGET_NICLA/device.h                  |  39 ++++
  targets/targets.json                          |  22 ++
  5 files changed, 279 insertions(+), 1 deletion(-)
- create mode 100644 targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/PinNames.h
- create mode 100644 targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/device.h
+ create mode 100644 targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/PinNames.h
+ create mode 100644 targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/device.h
 
 diff --git a/storage/blockdevice/COMPONENT_SD/mbed_lib.json b/storage/blockdevice/COMPONENT_SD/mbed_lib.json
 index 14950c1a1b..d310337037 100644
@@ -23,7 +23,7 @@ index 14950c1a1b..d310337037 100644
              "SPI_CS":   "PE_2"
 -        }
 +        },
-+        "UNISENSE": {
++        "NICLA": {
 +          "SPI_MOSI": "P0_13",
 +          "SPI_MISO": "P0_14",
 +          "SPI_CLK":  "P0_12",
@@ -40,7 +40,7 @@ index f8bb387f3c..6b30934d64 100644
             "SPI_CLK":  "SPI3_SCK",
             "SPI_CS":   "SPI_CS1"
 +       },
-+       "UNISENSE": {
++       "NICLA": {
 +           "SPI_MOSI": "P0_13",
 +           "SPI_MISO": "P0_14",
 +           "SPI_CLK":  "P0_12",
@@ -48,11 +48,11 @@ index f8bb387f3c..6b30934d64 100644
         }
      }
  }
-diff --git a/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/PinNames.h b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/PinNames.h
+diff --git a/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/PinNames.h b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/PinNames.h
 new file mode 100644
 index 0000000000..c066def037
 --- /dev/null
-+++ b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/PinNames.h
++++ b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/PinNames.h
 @@ -0,0 +1,205 @@
 +/* 
 + * Copyright (c) 2016 Nordic Semiconductor ASA
@@ -259,11 +259,11 @@ index 0000000000..c066def037
 +#endif
 +
 +#endif
-diff --git a/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/device.h b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/device.h
+diff --git a/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/device.h b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/device.h
 new file mode 100644
 index 0000000000..a086e5b7f0
 --- /dev/null
-+++ b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_UNISENSE/device.h
++++ b/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52832/TARGET_NICLA/device.h
 @@ -0,0 +1,39 @@
 +// The 'features' section in 'target.json' is now used to create the device's hardware preprocessor switches.
 +// Check the 'features' section of the target description in 'targets.json' for more details.
@@ -312,7 +312,7 @@ index f986686254..59de6c8393 100644
          ],
          "device_name": "nRF52832_xxAA"
      },
-+    "UNISENSE": {
++    "NICLA": {
 +        "inherits": ["MCU_NRF52832"],
 +        "release_versions": ["5"],
 +        "device_name": "nRF52832_xxAA",
