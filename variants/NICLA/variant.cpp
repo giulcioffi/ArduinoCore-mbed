@@ -124,6 +124,9 @@ extern "C" {
 
 void initVariant() {
 
+  CoreDebug->DEMCR = 0;
+  NRF_CLOCK->TRACECONFIG = 0;
+
   NRF_PWM_Type* PWM[] = {
     NRF_PWM0, NRF_PWM1, NRF_PWM2
 #ifdef NRF_PWM3
