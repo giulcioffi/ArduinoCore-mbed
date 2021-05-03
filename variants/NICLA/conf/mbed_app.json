@@ -19,7 +19,7 @@
       "target.components_add" : ["SPIF"],
       "cordio.max-connections": 1,
       "ble.ble-role-central": false,
-      "ble.ble-role-observer": false,
+      "ble.ble-role-observer": true,
       "ble.ble-gap-max-advertising-sets": 1,
       "ble.ble-gap-host-privacy-resolved-cache-size": 1,
       "ble.ble-feature-gatt-client": false,
