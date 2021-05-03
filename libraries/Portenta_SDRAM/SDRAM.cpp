@@ -18,12 +18,12 @@ int SDRAMClass::begin(uint32_t start_address) {
 			then enable access/caching for the size used
 		*/
 
+#if 0
         if (SDRAM_START_ADDRESS != 0xC0000000) {
 		    printf("remap ram to 0x60000000\n");
             HAL_SetFMCMemorySwappingConfig(FMC_SWAPBMAP_SDRAM_SRAM);
         }
-
-#if 0
+#endif
 
 		printf("setup mpu\n");
         #define MPU_SDRAM_EXEC_REGION_NUMBER  MPU_REGION_SDRAM1
@@ -50,7 +50,6 @@ int SDRAMClass::begin(uint32_t start_address) {
   
         /* Enable MPU and leave the predefined regions to default configuration */
         MPU->CTRL |= MPU_CTRL_PRIVDEFENA_Msk |  MPU_CTRL_ENABLE_Msk;	
-#endif
 
 #if 0
 		mpu_config_start();
