@@ -140,7 +140,7 @@ void arduino::MbedI2C::receiveThd() {
 			case mbed::I2CSlave::WriteGeneral:
 			case mbed::I2CSlave::WriteAddressed:
 				rxBuffer.clear();
-				char buf[264];
+				char buf[200];
 				c = slave->read(buf, sizeof(buf));
 				for (buf_idx = 0; buf_idx < c; buf_idx++) {
 					if (rxBuffer.availableForStore()) {
