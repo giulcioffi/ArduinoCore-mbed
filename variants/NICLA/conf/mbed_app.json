@@ -33,7 +33,8 @@
       "ble.ble-security-database-filesystem": false,
       "ble.ble-security-database-kvstore": false,
       "ble.ble-gap-host-based-private-address-resolution": false,
-      "ble.ble-gap-max-advertising-reports-pending-address-resolution": false
+      "ble.ble-gap-max-advertising-reports-pending-address-resolution": false,
+      "target.macros_remove": ["CONFIG_GPIO_AS_PINRESET"]
     }
   }
 }
