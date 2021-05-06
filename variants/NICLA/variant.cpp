@@ -118,6 +118,13 @@ extern "C" {
   }
 }
 
+mbed::InterruptIn button(BUTTON1);
+
+void resetFunc()
+{
+  NVIC_SystemReset();
+}
+
 #include "nrf_rtc.h"
 #include "nrf_uarte.h"
 #include "nrf_uart.h"
@@ -138,6 +145,8 @@ void initVariant() {
     PWM[i]->ENABLE = 0;
     PWM[i]->PSEL.OUT[0] = 0xFFFFFFFFUL;
   } 
+
+  button.fall(&resetFunc);
 }
 
 #ifdef SERIAL_CDC
