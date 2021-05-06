@@ -154,6 +154,8 @@ static const uint8_t SCK  = PIN_SPI_SCK;
 #define I2C_SDA1			(I2C_SDA1)
 #define I2C_SCL1			(I2C_SCL1)
 
+#define RESET_N				(BUTTON1)
+
 #define SPI_HOWMANY			1
 
 #define SPI_MISO			(digitalPinToPinName(PIN_SPI_MISO))
