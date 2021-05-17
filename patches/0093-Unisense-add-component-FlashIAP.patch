@@ -1,19 +1,19 @@
-From 539064c970e3460bee71ae3d7dd28e2598004b30 Mon Sep 17 00:00:00 2001
+From 40058fe565ea4638c7f582a0e19ed7fcd43508bc Mon Sep 17 00:00:00 2001
 From: giulcioffi <g.cioffi@arduino.cc>
 Date: Tue, 12 Jan 2021 17:19:36 +0100
-Subject: [PATCH 5/8] Nicla: add component FlashIAP
+Subject: [PATCH 93/99] Unisense: add component FlashIAP
 
 ---
  targets/targets.json | 3 +++
  1 file changed, 3 insertions(+)
 
 diff --git a/targets/targets.json b/targets/targets.json
-index 59de6c8393..ec3780ac8a 100644
+index 447fb2b917..506e64e5fb 100644
 --- a/targets/targets.json
 +++ b/targets/targets.json
-@@ -5556,6 +5556,9 @@
+@@ -5957,6 +5957,9 @@
      },
-     "NICLA": {
+     "UNISENSE": {
          "inherits": ["MCU_NRF52832"],
 +        "components_add": [
 +            "FLASHIAP"

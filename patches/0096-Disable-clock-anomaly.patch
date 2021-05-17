@@ -1,7 +1,7 @@
-From a30bb0ec309dbd5500c876be63dd74f1736b0668 Mon Sep 17 00:00:00 2001
+From 98f2fc8b84eeb174b3082dda83cfda69c9272591 Mon Sep 17 00:00:00 2001
 From: giulcioffi <g.cioffi@arduino.cc>
 Date: Thu, 1 Apr 2021 18:02:36 +0200
-Subject: [PATCH 7/8] Disable clock anomaly
+Subject: [PATCH 96/99] Disable clock anomaly
 
 ---
  .../TARGET_SDK_15_0/modules/nrfx/drivers/src/nrfx_clock.c       | 2 +-
