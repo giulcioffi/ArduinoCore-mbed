@@ -23,9 +23,9 @@
 #include "Wire.h"
 #include "pinDefinitions.h"
 
-arduino::MbedI2C::MbedI2C(int sda, int scl) : _sda(digitalPinToPinName(sda)), _scl(digitalPinToPinName(scl)), usedTxBuffer(0) {}
+arduino::MbedI2C::MbedI2C(int sda, int scl) : _sda(digitalPinToPinName(sda)), _scl(digitalPinToPinName(scl)), usedTxBuffer(0), slave_th(osPriorityNormal, 2048, nullptr, "I2CSlave") {}
 
-arduino::MbedI2C::MbedI2C(PinName sda, PinName scl) : _sda(sda), _scl(scl), usedTxBuffer(0) {}
+arduino::MbedI2C::MbedI2C(PinName sda, PinName scl) : _sda(sda), _scl(scl), usedTxBuffer(0), slave_th(osPriorityNormal, 2048, nullptr, "I2CSlave") {}
 
 void arduino::MbedI2C::begin() {
 	master = new mbed::I2C(_sda, _scl);
