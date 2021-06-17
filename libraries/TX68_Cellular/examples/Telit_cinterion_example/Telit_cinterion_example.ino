@@ -50,8 +50,7 @@ nsapi_error_t test_send_recv()
   }
 
   int n = 1;
-  const char *echo_string = "TEST";
-  char recv_buf[5];
+  char recv_buf[500];
 
   sock.set_timeout(15000);
 
@@ -73,24 +72,40 @@ nsapi_error_t test_send_recv()
   } else {
     print_function("TCP: connected with %s server\n", "104.18.28.45");
   }
-  //    retcode = sock.send((void*) echo_string, strlen(echo_string));
-  //    if (retcode < 0) {
-  //      print_function("TCPSocket.send() fails, code: %d\n", retcode);
-  //      return -1;
-  //    } else {
-  //      print_function("TCP: Sent %d Bytes to %s\n", retcode, host_name);
-  //    }
-  //delay(10000);
-  while (retcode == 0) {
+
+      const char *echo_string = "GET /asciilogo.txt HTTP/1.1\n";
+      retcode = sock.send((void*) echo_string, strlen(echo_string));
+      echo_string = "Host www.arduino.cc\n";
+      retcode = sock.send((void*) echo_string, strlen(echo_string));
+      echo_string = "Connection: close\n";
+      retcode = sock.send((void*) echo_string, strlen(echo_string));
+      echo_string = "\n";
+      retcode = sock.send((void*) echo_string, strlen(echo_string));
+      
+      if (retcode < 0) {
+        print_function("TCPSocket.send() fails, code: %d\n", retcode);
+        return -1;
+      } else {
+        print_function("TCP: Sent %d Bytes to %s\n", retcode, host_name);
+      }
+  while (1) {
     n = sock.recv((void*) recv_buf, sizeof(recv_buf));
     Serial.println();
     Serial.println("-----------------------------------------------------");
     Serial.println(n);
-    Serial.println(recv_buf);
+    for (int i = 0; i < n; i++) {
+      Serial.print(recv_buf[i]);
+    }
+    //Serial.println(recv_buf);
     Serial.println("-----------------------------------------------------");
+    /*
     if (n > 0) {
       Serial.write(recv_buf, n);
     } else {
+      break;
+    }
+    */
+    if (n < 1) {
       break;
     }
   }
