@@ -50,7 +50,7 @@ nsapi_error_t test_send_recv()
   }
 
   int n = 1;
-  char recv_buf[500];
+  char recv_buf[1400];
 
   sock.set_timeout(15000);
 
@@ -61,7 +61,7 @@ nsapi_error_t test_send_recv()
   //      return -1;
   //    }
   sock_addr.set_ip_address("104.18.28.45");
-  //sock_addr.set_url_address("http://www.arduino.cc:80/asciilogo.txt");
+  sock_addr.set_url_address("http://www.arduino.cc:80/asciilogo.txt");
   sock_addr.set_port(80);
 
 
@@ -72,12 +72,12 @@ nsapi_error_t test_send_recv()
   } else {
     print_function("TCP: connected with %s server\n", "104.18.28.45");
   }
-
-      const char *echo_string = "GET /asciilogo.txt HTTP/1.1\n";
+      /*
+      const char *echo_string = "GET /asciilogo.txt HTTP/1.1";
       retcode = sock.send((void*) echo_string, strlen(echo_string));
-      echo_string = "Host www.arduino.cc\n";
+      echo_string = "Host www.arduino.cc";
       retcode = sock.send((void*) echo_string, strlen(echo_string));
-      echo_string = "Connection: close\n";
+      echo_string = "Connection: close";
       retcode = sock.send((void*) echo_string, strlen(echo_string));
       echo_string = "\n";
       retcode = sock.send((void*) echo_string, strlen(echo_string));
@@ -88,6 +88,12 @@ nsapi_error_t test_send_recv()
       } else {
         print_function("TCP: Sent %d Bytes to %s\n", retcode, host_name);
       }
+      */
+      
+      
+      const char *echo_string = "GET http://www.arduino.cc:80/asciilogo.txt HTTP/1.1";
+      retcode = sock.send((void*) echo_string, strlen(echo_string));
+      
   while (1) {
     n = sock.recv((void*) recv_buf, sizeof(recv_buf));
     Serial.println();
@@ -96,15 +102,7 @@ nsapi_error_t test_send_recv()
     for (int i = 0; i < n; i++) {
       Serial.print(recv_buf[i]);
     }
-    //Serial.println(recv_buf);
     Serial.println("-----------------------------------------------------");
-    /*
-    if (n > 0) {
-      Serial.write(recv_buf, n);
-    } else {
-      break;
-    }
-    */
     if (n < 1) {
       break;
     }
