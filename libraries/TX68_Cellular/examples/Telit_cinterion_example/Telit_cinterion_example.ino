@@ -29,10 +29,11 @@ mbed::CellularDevice *mbed::CellularDevice::get_default_instance()
 
 NetworkInterface *iface;
 
-#define print_function printf
 //REDIRECT_STDOUT_TO(Serial);
 const char  host_name[] = "www.google.com";
-//port_t port = 80;
+const char ip_address[] = "104.18.28.45";
+const char url_address[] = "http://www.arduino.cc:80/asciilogo.txt";
+int port = 80;
 nsapi_error_t test_send_recv()
 {
   nsapi_size_or_error_t retcode;
@@ -45,7 +46,8 @@ nsapi_error_t test_send_recv()
   retcode = sock.open(((mbed::CellularContext*)iface));
 
   if (retcode != NSAPI_ERROR_OK) {
-    print_function("TCPSocket.open() fails, code: %d\n", retcode);
+    Serial.print("TCPSocket.open() fails, code: ");
+    Serial.println(retcode);
     return -1;
   }
 
@@ -55,22 +57,19 @@ nsapi_error_t test_send_recv()
   sock.set_timeout(15000);
 
   SocketAddress sock_addr;
-  //    retcode = iface->gethostbyname(host_name, &sock_addr);
-  //    if (retcode != NSAPI_ERROR_OK) {
-  //      print_function("Couldn't resolve remote host: %s, code: %d\n", host_name, retcode);
-  //      return -1;
-  //    }
-  sock_addr.set_ip_address("104.18.28.45");
-  sock_addr.set_url_address("http://www.arduino.cc:80/asciilogo.txt");
-  sock_addr.set_port(80);
+  sock_addr.set_ip_address(ip_address);
+  sock_addr.set_url_address(url_address);
+  sock_addr.set_port(port);
 
 
   retcode = sock.connect(sock_addr);
   if (retcode < 0) {
-    print_function("TCPSocket.connect() fails, code: %d\n", retcode);
+    Serial.print("TCPSocket.connect() fails, code: ");
+    Serial.println(retcode);
     return -1;
   } else {
-    print_function("TCP: connected with %s server\n", "104.18.28.45");
+    Serial.print("TCP: connected with server ");
+    Serial.println(ip_address);
   }
       /*
       const char *echo_string = "GET /asciilogo.txt HTTP/1.1";
@@ -83,10 +82,14 @@ nsapi_error_t test_send_recv()
       retcode = sock.send((void*) echo_string, strlen(echo_string));
       
       if (retcode < 0) {
-        print_function("TCPSocket.send() fails, code: %d\n", retcode);
+        Serial.print("TCPSocket.send() fails, code: ");
+        Serial.println(retcode);
         return -1;
       } else {
-        print_function("TCP: Sent %d Bytes to %s\n", retcode, host_name);
+        Serial.print("TCP: Sent ");
+        Serial.print(retcode);
+        Serial.print(" bytes to ");
+        Serial.println(host_name);
       }
       */
       
@@ -110,7 +113,8 @@ nsapi_error_t test_send_recv()
   sock.close();
 
   if (n > 0) {
-    print_function("Received from echo server %d Bytes\n", n);
+    Serial.print(n);
+    Serial.println(" bytes received from echo server");
     return 0;
   }
   return -1;
@@ -123,17 +127,18 @@ nsapi_error_t do_connect()
   ((mbed::CellularContext*)iface)->set_authentication_type((mbed::CellularContext::AuthenticationType)1);
   ((mbed::CellularContext*)iface)->set_credentials("lpwa.pelion", "streamip", "streamip");
   while (iface->get_connection_status() != NSAPI_STATUS_GLOBAL_UP) {
-    printf("during connect\n");
+    Serial.println("Connecting...\n");
     retcode = ((mbed::CellularContext*)iface)->connect();
-    printf("after connect\n");
+    Serial.println();
     if (retcode == NSAPI_ERROR_AUTH_FAILURE) {
-      print_function("\n\nAuthentication Failure. Exiting application\n");
+      Serial.println("Authentication Failure. Exiting application.");
     } else if (retcode == NSAPI_ERROR_OK) {
-      print_function("\n\nConnection Established.\n");
+      Serial.println("Connection Established.");
     } else if (retry_counter > 2) {
-      print_function("\n\nFatal connection failure: %d\n", retcode);
+      Serial.print("Fatal connection failure: ");
+      Serial.println(retcode);
     } else {
-      print_function("\n\nCouldn't connect: %d, will retry\n", retcode);
+      Serial.println("Couldn't connect, will retry");
       retry_counter++;
       continue;
     }
@@ -153,19 +158,12 @@ void setup() {
   iface = mbed::CellularContext::get_default_instance();
   delay(1000);
   ((mbed::CellularDevice*)iface)->init();
-  //iface->set_default_parameters();
-
-  Serial.println("here");
-  //iface->set_sim_pin("0000");
-  //
+  
   if (do_connect() == NSAPI_ERROR_OK) {
     test_send_recv();
   }
-
-  Serial.println("loop");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
 }
