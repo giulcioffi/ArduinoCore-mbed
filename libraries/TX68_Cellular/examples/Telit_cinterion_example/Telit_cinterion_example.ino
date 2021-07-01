@@ -9,10 +9,13 @@
 #define MBED_CONF_GEMALTO_CINTERION_RTS   PI_10
 //#define MBED_CONF_GEMALTO_CINTERION_CTS   PI_13
 #define MBED_CONF_APP_SOCK_TYPE           1
+#define MAXRETRY                          3
 
 mbed::DigitalOut on(PJ_7, 1);
 mbed::DigitalOut rts(MBED_CONF_GEMALTO_CINTERION_RTS, 0);
 REDIRECT_STDOUT_TO(Serial);
+
+uint8_t retryCount = 0;
 
 #include "drivers/BufferedSerial.h"
 mbed::CellularDevice *mbed::CellularDevice::get_default_instance()
@@ -30,9 +33,8 @@ mbed::CellularDevice *mbed::CellularDevice::get_default_instance()
 NetworkInterface *iface;
 
 //REDIRECT_STDOUT_TO(Serial);
-const char  host_name[] = "www.google.com";
-const char ip_address[] = "104.18.28.45";
-const char url_address[] = "http://www.arduino.cc:80/asciilogo.txt";
+const char  host_name[] = "www.example.com";
+const char* ip_address;
 int port = 80;
 nsapi_error_t test_send_recv()
 {
@@ -40,6 +42,23 @@ nsapi_error_t test_send_recv()
 
   TCPSocket sock;
 
+  Serial.println("Before gethostbyname");
+
+  SocketAddress sock_addr;
+
+  retcode = iface->gethostbyname(host_name,&sock_addr);
+  while (retcode != NSAPI_ERROR_OK && retryCount < MAXRETRY) {  
+    retcode = iface->gethostbyname(host_name,&sock_addr);
+    retryCount++;
+  }
+
+  if (retcode != NSAPI_ERROR_OK) {
+    Serial.println("Unable to solve IP address...");
+    return retcode;
+  }
+  
+  ip_address = sock_addr.get_ip_address();
+  sock_addr.set_port(port);
 
   Serial.println("Before open socket");
 
@@ -56,11 +75,6 @@ nsapi_error_t test_send_recv()
 
   sock.set_timeout(15000);
 
-  SocketAddress sock_addr;
-  sock_addr.set_ip_address(ip_address);
-  sock_addr.set_url_address(url_address);
-  sock_addr.set_port(port);
-
 
   retcode = sock.connect(sock_addr);
   if (retcode < 0) {
@@ -71,10 +85,10 @@ nsapi_error_t test_send_recv()
     Serial.print("TCP: connected with server ");
     Serial.println(ip_address);
   }
-      /*
-      const char *echo_string = "GET /asciilogo.txt HTTP/1.1";
+  
+      const char *echo_string = "GET / HTTP/1.1";
       retcode = sock.send((void*) echo_string, strlen(echo_string));
-      echo_string = "Host www.arduino.cc";
+      echo_string = "Host www.example.com";
       retcode = sock.send((void*) echo_string, strlen(echo_string));
       echo_string = "Connection: close";
       retcode = sock.send((void*) echo_string, strlen(echo_string));
@@ -91,11 +105,10 @@ nsapi_error_t test_send_recv()
         Serial.print(" bytes to ");
         Serial.println(host_name);
       }
-      */
       
       
-      const char *echo_string = "GET http://www.arduino.cc:80/asciilogo.txt HTTP/1.1";
-      retcode = sock.send((void*) echo_string, strlen(echo_string));
+      //const char *echo_string = "GET http://www.arduino.cc:80/asciilogo.txt HTTP/1.1";
+      //retcode = sock.send((void*) echo_string, strlen(echo_string));
       
   while (1) {
     n = sock.recv((void*) recv_buf, sizeof(recv_buf));
@@ -123,27 +136,29 @@ nsapi_error_t test_send_recv()
 nsapi_error_t do_connect()
 {
   nsapi_error_t retcode = NSAPI_ERROR_OK;
-  uint8_t retry_counter = 0;
   ((mbed::CellularContext*)iface)->set_authentication_type((mbed::CellularContext::AuthenticationType)1);
   ((mbed::CellularContext*)iface)->set_credentials("lpwa.pelion", "streamip", "streamip");
-  while (iface->get_connection_status() != NSAPI_STATUS_GLOBAL_UP) {
+  ((mbed::CellularContext*)iface)->set_access_technology(CATNB);
+  retcode = NSAPI_ERROR_AUTH_FAILURE;
+  while(retcode != NSAPI_ERROR_OK && retryCount < MAXRETRY) {
     Serial.println("Connecting...\n");
-    retcode = ((mbed::CellularContext*)iface)->connect();
+    retcode = ((mbed::CellularContext*)iface)->connect("", "lpwa.pelion", "streamip", "streamip");
+    retryCount++;
     Serial.println();
     if (retcode == NSAPI_ERROR_AUTH_FAILURE) {
       Serial.println("Authentication Failure. Exiting application.");
-    } else if (retcode == NSAPI_ERROR_OK) {
+    } else if (retcode == NSAPI_ERROR_OK || retcode == NSAPI_ERROR_IS_CONNECTED) {
+      retcode = NSAPI_ERROR_OK;
       Serial.println("Connection Established.");
-    } else if (retry_counter > 2) {
+    } else if (retryCount > 2) {
       Serial.print("Fatal connection failure: ");
       Serial.println(retcode);
     } else {
       Serial.println("Couldn't connect, will retry");
-      retry_counter++;
       continue;
     }
-    break;
   }
+  retryCount = 0;
   return retcode;
 }
 
