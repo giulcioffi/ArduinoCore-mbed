@@ -111,7 +111,14 @@ nsapi_error_t test_send_recv()
       //retcode = sock.send((void*) echo_string, strlen(echo_string));
       
   while (1) {
+    int start_time = millis();
     n = sock.recv((void*) recv_buf, sizeof(recv_buf));
+    int recv_time = millis() - start_time;
+    Serial.print("Recv time: ");
+    Serial.println(recv_time);
+    float performance = (float)recv_time/n;
+    Serial.print("Performance: ");
+    Serial.println(performance, 3);
     Serial.println();
     Serial.println("-----------------------------------------------------");
     Serial.println(n);
